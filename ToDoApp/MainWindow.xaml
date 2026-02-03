@@ -1,0 +1,28 @@
+﻿<Window x:Class="ToDoApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoApp"
+        mc:Ignorable="d"
+        Title="ToDo Application" Height="450" Width="405">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="ToDoListBox" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="12,8,12,58" Grid.RowSpan="2"/>
+        <StackPanel Orientation="Horizontal">
+            <RadioButton x:Name="AllRadioButton" Content="Усі" Margin="12,12,8,0"/>
+            <RadioButton x:Name="NotCompletedRadioButton" Content="Не виконані" Margin="0,12,8,0"/>
+            <RadioButton x:Name="Completed" Content="Виконані" Margin="0,12,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="AddButton" Content="Додати" Margin="12,0,8,12" Padding="8,1,8,1"/>
+            <Button x:Name="CompleteButton" Content="Завершити" Margin="12,0,8,12" IsDefault="True" Padding="8,1,8,1"/>
+            <Button x:Name="DeleteButton" Content="Видалити" Margin="12,0,8,12" Padding="8,1,8,1"/>
+        </StackPanel>
+
+    </Grid>
+</Window>
