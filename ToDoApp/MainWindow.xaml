@@ -12,7 +12,7 @@
             <RowDefinition/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <ListBox x:Name="ToDoListBox" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="12,8,12,58" Grid.RowSpan="2"/>
+        <ListBox x:Name="ToDoListBox" Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="12,8,12,58" Grid.RowSpan="2" MouseDoubleClick="ToDoListBox_MouseDoubleClick"/>
         <StackPanel Orientation="Horizontal">
             <RadioButton x:Name="AllRadioButton" Content="Усі" Margin="12,12,8,0"/>
             <RadioButton x:Name="NotCompletedRadioButton" Content="Не виконані" Margin="0,12,8,0"/>
