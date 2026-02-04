@@ -29,17 +29,17 @@ namespace ToDoApp
             Task task1 = new Task();
             task1.Name = "Домашня із С#";
             task1.Description = "Додайте до класу Task, у ToDoApplication проекті, властивість Description яка буде зберігати більш детальний опис задачі. Зробіть щоб при подвійному кліку на задачу в списку виводилося значення властивості Description у MessageBox.";
-            task1.isCompleted = false;
+            task1.IsCompleted = false;
 
             Task task2 = new Task();
             task2.Name = "Урок з Linux";
             task2.Description = "Розділ Операційна система";
-            task2.isCompleted = false;
+            task2.IsCompleted = false;
 
             Task task3 = new Task();
             task3.Name = "Німецька в Bussuu";
             task3.Description = "Пройти декілька уроків";
-            task3.isCompleted = false;
+            task3.IsCompleted = false;
 
             tasksList.Add(task1);
             tasksList.Add(task2);
