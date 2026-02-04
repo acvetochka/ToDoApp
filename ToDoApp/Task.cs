@@ -8,7 +8,7 @@ namespace ToDoApp
     {
         public string Name { get; set; }
 
-        public bool isCompleted  { get; set; }
+        public bool IsCompleted  { get; set; }
 
         public string Description { get; set; }
     }
