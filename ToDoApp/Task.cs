@@ -4,6 +4,7 @@ using System.Text;
 
 namespace ToDoApp
 {
+    //[Serializible]
     public class Task
     {
         public string Name { get; set; }

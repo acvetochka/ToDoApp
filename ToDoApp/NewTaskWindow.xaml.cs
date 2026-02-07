@@ -31,14 +31,15 @@ namespace ToDoApp
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             Task task = new Task();
-            task.Name = NameTextBox.Text;
-            task.IsCompleted = IsCompletedCheckBox.IsChecked.Value;
-            task.Description = DescriptionTextBox.Text;
-
-            Result = task;
+            
 
             if (NameTextBox.Text != "")
             {
+                task.Name = NameTextBox.Text;
+                task.IsCompleted = IsCompletedCheckBox.IsChecked.Value;
+                task.Description = DescriptionTextBox.Text;
+
+                Result = task;
                 DialogResult = true;
             }
             else {
@@ -48,6 +49,11 @@ namespace ToDoApp
         }
 
         private void DescriptionTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
         {
 
         }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoApp"
         mc:Ignorable="d"
-        Title="Нова таска" Height="350" Width="300">
+        Title="Нова задача" Height="350" Width="300" Closed="Window_Closed">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,10 +19,10 @@
             <Button x:Name="SaveButton" Content="Зберегти" Click="SaveButton_Click"/>
         </StackPanel>
         <StackPanel Margin="12,12,12,12">
-            <TextBlock TextWrapping="Wrap" Text="Назва таски" Margin="0,0,0,4"/>
+            <TextBlock TextWrapping="Wrap" Text="Назва задачі" Margin="0,0,0,4"/>
             <TextBox x:Name="NameTextBox" TextWrapping="Wrap" Width="276" HorizontalAlignment="Left"/>
             <CheckBox x:Name="IsCompletedCheckBox" Content="Виконана" Margin="0,4,0,0"/>
-            <TextBlock TextWrapping="Wrap" Text="Опис" Margin="0,8,0,0"/>
+            <TextBlock TextWrapping="Wrap" Text="Опис задачі" Margin="0,8,0,0"/>
             <TextBox x:Name="DescriptionTextBox" TextWrapping="Wrap" Width="276" HorizontalAlignment="Left" Margin="0,4,0,0" Height="134" TextChanged="DescriptionTextBox_TextChanged" AcceptsReturn="True"/>
         </StackPanel>
 

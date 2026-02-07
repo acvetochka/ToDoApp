@@ -1,5 +1,13 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
+//using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,34 +26,12 @@ namespace ToDoApp
     public partial class MainWindow : Window
     {
         //string[] tasks = new string[3];
-        //ObservableCollection<Task> tasksList = new ObservableCollection<Task>();
-        ObservableCollection<Task> tasksList = [];
+        ObservableCollection<Task> tasksList = new ObservableCollection<Task>();
+        //ObservableCollection<Task> tasksList = [];
 
         public MainWindow()
         {
             InitializeComponent();
-            //tasks[0] = "Домашня із С#";
-            //tasks[1] = "Урок з Linux";
-            //tasks[2] = "Німецька в Bussuu";
-
-            Task task1 = new Task();
-            task1.Name = "Домашня із С#";
-            task1.Description = "Додайте до класу Task, у ToDoApplication проекті, властивість Description яка буде зберігати більш детальний опис задачі. Зробіть щоб при подвійному кліку на задачу в списку виводилося значення властивості Description у MessageBox.";
-            task1.IsCompleted = false;
-
-            Task task2 = new Task();
-            task2.Name = "Урок з Linux";
-            task2.Description = "Розділ Операційна система";
-            task2.IsCompleted = false;
-
-            Task task3 = new Task();
-            task3.Name = "Німецька в Bussuu";
-            task3.Description = "Пройти декілька уроків";
-            task3.IsCompleted = false;
-
-            tasksList.Add(task1);
-            tasksList.Add(task2);
-            tasksList.Add(task3);
 
             ToDoListBox.ItemsSource = tasksList;
             ToDoListBox.DisplayMemberPath = "Name";
@@ -98,7 +84,7 @@ namespace ToDoApp
 
         private void NotCompletedRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<Task> filteredTaskList = [];
+            ObservableCollection<Task> filteredTaskList = new ObservableCollection<Task>();
             for (int i = 0; i < tasksList.Count; i++)
             {
                 Task current = tasksList[i];
@@ -113,7 +99,7 @@ namespace ToDoApp
 
         private void Completed_Checked(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<Task> filteredTaskList = [];
+            ObservableCollection<Task> filteredTaskList = new ObservableCollection<Task>();
             for (int i = 0; i < tasksList.Count; i++)
             {
                 Task current = tasksList[i];
@@ -123,6 +109,36 @@ namespace ToDoApp
                 }
             }
             ToDoListBox.ItemsSource = filteredTaskList;
+        }
+
+        string fileName = "tasks.json";
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            var options = new JsonSerializerOptions
+            {
+                // 1. Щоб бачити кирилицю як текст, а не коди \u04...
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+
+                // 2. Щоб текст був з відступами (красивий), а не в один рядок
+                WriteIndented = true
+            };
+            string jsonString = JsonSerializer.Serialize(tasksList, options);
+            File.WriteAllText(fileName, jsonString);
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists(fileName))
+            {
+                //read file
+                string jsonString = File.ReadAllText(fileName);
+                tasksList = JsonSerializer.Deserialize<ObservableCollection<Task>>(jsonString) ?? new ObservableCollection<Task>();
+
+                ToDoListBox.ItemsSource = tasksList;
+                AllRadioButton.IsChecked = true;
+            }
+
         }
     }
 }
