@@ -20,10 +20,10 @@
         </StackPanel>
         <StackPanel Margin="12,12,12,12">
             <TextBlock TextWrapping="Wrap" Text="Назва таски" Margin="0,0,0,4"/>
-            <TextBox x:Name="NameTextBox" TextWrapping="Wrap" Width="200" HorizontalAlignment="Left"/>
+            <TextBox x:Name="NameTextBox" TextWrapping="Wrap" Width="276" HorizontalAlignment="Left"/>
             <CheckBox x:Name="IsCompletedCheckBox" Content="Виконана" Margin="0,4,0,0"/>
             <TextBlock TextWrapping="Wrap" Text="Опис" Margin="0,8,0,0"/>
-            <TextBox x:Name="DescriptionTextBox" TextWrapping="Wrap" Width="261" HorizontalAlignment="Left" Margin="0,4,0,0" Height="134" TextChanged="DescriptionTextBox_TextChanged"/>
+            <TextBox x:Name="DescriptionTextBox" TextWrapping="Wrap" Width="276" HorizontalAlignment="Left" Margin="0,4,0,0" Height="134" TextChanged="DescriptionTextBox_TextChanged" AcceptsReturn="True"/>
         </StackPanel>
 
     </Grid>
