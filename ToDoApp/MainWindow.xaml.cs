@@ -74,6 +74,7 @@ namespace ToDoApp
             if (index != -1)
             {
                 tasksList[index].IsCompleted = true;
+                Completed.IsChecked = true;
             }
         }
 
