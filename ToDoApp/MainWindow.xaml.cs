@@ -70,47 +70,75 @@ namespace ToDoApp
 
         private void CompleteButton_Click(object sender, RoutedEventArgs e)
         {
-            int index = ToDoListBox.SelectedIndex;
-            if (index != -1)
+            //int index = ToDoListBox.SelectedIndex;
+            //if (index != -1)
+            //{
+            //    tasksList[index].IsCompleted = true;
+            //    Completed.IsChecked = true;
+            //}
+            if(ToDoListBox.SelectedItem is Task selectedTask)
             {
-                tasksList[index].IsCompleted = true;
-                Completed.IsChecked = true;
+                selectedTask.IsCompleted = true;
+                ApplyFilter();
             }
         }
 
-        private void AllRadioButton_Checked(object sender, RoutedEventArgs e)
+        private void ApplyFilter()
         {
-            ToDoListBox.ItemsSource = tasksList;
-        }
+            var view = CollectionViewSource.GetDefaultView(tasksList);
+            if (view == null) return;
 
-        private void NotCompletedRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            ObservableCollection<Task> filteredTaskList = new ObservableCollection<Task>();
-            for (int i = 0; i < tasksList.Count; i++)
+            view.Filter = (obj) =>
             {
-                Task current = tasksList[i];
-                if (current.IsCompleted == false)
+                if (obj is Task task)
                 {
-                    filteredTaskList.Add(current);
+                    if (AllRadioButton.IsChecked == true) return true;
+                    if (NotCompletedRadioButton.IsChecked == true) return !task.IsCompleted;
+                    if (Completed.IsChecked == true) return task.IsCompleted;
                 }
-            }
-            ToDoListBox.ItemsSource = filteredTaskList;
+                return true;
+            };
 
+            view.Refresh();
         }
 
-        private void Completed_Checked(object sender, RoutedEventArgs e)
-        {
-            ObservableCollection<Task> filteredTaskList = new ObservableCollection<Task>();
-            for (int i = 0; i < tasksList.Count; i++)
-            {
-                Task current = tasksList[i];
-                if (current.IsCompleted == true)
-                {
-                    filteredTaskList.Add(current);
-                }
-            }
-            ToDoListBox.ItemsSource = filteredTaskList;
-        }
+        private void AllRadioButton_Checked(object sender, RoutedEventArgs e) => ApplyFilter();
+        private void NotCompletedRadioButton_Checked(object sender, RoutedEventArgs e) => ApplyFilter();
+
+        private void Completed_Checked(object sender, RoutedEventArgs e) => ApplyFilter();
+        //private void AllRadioButton_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    ToDoListBox.ItemsSource = tasksList;
+        //}
+
+        //private void NotCompletedRadioButton_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    ObservableCollection<Task> filteredTaskList = new ObservableCollection<Task>();
+        //    for (int i = 0; i < tasksList.Count; i++)
+        //    {
+        //        Task current = tasksList[i];
+        //        if (current.IsCompleted == false)
+        //        {
+        //            filteredTaskList.Add(current);
+        //        }
+        //    }
+        //    ToDoListBox.ItemsSource = filteredTaskList;
+
+        //}
+
+        //private void Completed_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    ObservableCollection<Task> filteredTaskList = new ObservableCollection<Task>();
+        //    for (int i = 0; i < tasksList.Count; i++)
+        //    {
+        //        Task current = tasksList[i];
+        //        if (current.IsCompleted == true)
+        //        {
+        //            filteredTaskList.Add(current);
+        //        }
+        //    }
+        //    ToDoListBox.ItemsSource = filteredTaskList;
+        //}
 
         string fileName = "tasks.json";
         private void Window_Closed(object sender, EventArgs e)
