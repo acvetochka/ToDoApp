@@ -1,6 +1,3 @@
 <Solution>
-  <Project Path="../../../../Downloads/Telegram Desktop/Day7/Day7/Day7/Day7.csproj" />
-  <Project Path="../../../../Downloads/Telegram Desktop/Day7/Day7/Day7_Serialization/Day7_Serialization.csproj" />
-  <Project Path="../../../../Downloads/Telegram Desktop/ToDoApplication Day7/ToDoApplication Day7/ToDoApplication/ToDoApplication.csproj" />
   <Project Path="ToDoApp/ToDoApp.csproj" />
 </Solution>

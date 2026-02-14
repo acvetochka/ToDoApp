@@ -25,9 +25,7 @@ namespace ToDoApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        //string[] tasks = new string[3];
         ObservableCollection<Task> tasksList = new ObservableCollection<Task>();
-        //ObservableCollection<Task> tasksList = [];
 
         public MainWindow()
         {
@@ -70,12 +68,6 @@ namespace ToDoApp
 
         private void CompleteButton_Click(object sender, RoutedEventArgs e)
         {
-            //int index = ToDoListBox.SelectedIndex;
-            //if (index != -1)
-            //{
-            //    tasksList[index].IsCompleted = true;
-            //    Completed.IsChecked = true;
-            //}
             if(ToDoListBox.SelectedItem is Task selectedTask)
             {
                 selectedTask.IsCompleted = true;
@@ -106,39 +98,6 @@ namespace ToDoApp
         private void NotCompletedRadioButton_Checked(object sender, RoutedEventArgs e) => ApplyFilter();
 
         private void Completed_Checked(object sender, RoutedEventArgs e) => ApplyFilter();
-        //private void AllRadioButton_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    ToDoListBox.ItemsSource = tasksList;
-        //}
-
-        //private void NotCompletedRadioButton_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    ObservableCollection<Task> filteredTaskList = new ObservableCollection<Task>();
-        //    for (int i = 0; i < tasksList.Count; i++)
-        //    {
-        //        Task current = tasksList[i];
-        //        if (current.IsCompleted == false)
-        //        {
-        //            filteredTaskList.Add(current);
-        //        }
-        //    }
-        //    ToDoListBox.ItemsSource = filteredTaskList;
-
-        //}
-
-        //private void Completed_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    ObservableCollection<Task> filteredTaskList = new ObservableCollection<Task>();
-        //    for (int i = 0; i < tasksList.Count; i++)
-        //    {
-        //        Task current = tasksList[i];
-        //        if (current.IsCompleted == true)
-        //        {
-        //            filteredTaskList.Add(current);
-        //        }
-        //    }
-        //    ToDoListBox.ItemsSource = filteredTaskList;
-        //}
 
         string fileName = "tasks.json";
         private void Window_Closed(object sender, EventArgs e)
